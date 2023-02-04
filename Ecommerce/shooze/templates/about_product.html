@@ -1,0 +1,108 @@
+{%extends 'base.html'%}
+
+{%block title%}About page{% endblock  %}
+{%block content%}
+<div class="container-fluid row mx-auto">
+    <div class="colorlib-about">
+        <div class="container">
+
+            <div class="row row-pb-lg">{% for prod in prod %}
+                <div class="col-sm-6 mb-3 mt-5 me-auto">
+                    
+                    <img src="{{prod.image.url}}" style="height: 400px; width:400px">
+                </div>
+                <div class="col-sm-6 mt-5 mt-5">
+                    <div class="product-desc">
+                        <h3>{{prod.name}}</h3>
+                        <h4>
+                            <span><b>price :  ₹{{prod.price}}/-</b></span>
+                        </h4>
+                        <h5>description : {{prod.description}}</h5>
+                        <h5>brand : {{prod.brand}}</h5>
+                        <h5>category : {{prod.category}}</h5>
+                           
+                
+                
+               
+                        
+                        
+                        <div class="mt-5 mx-3 my-3 me-auto">
+                            <div class="col 12 col-sm-12 text-center mb-5 mx-3 my-3 me-auto">
+                                <p class="addtocart"><a href="#" class="btn btn-warning btn-buynow" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-money" ></i>  Buy now</a></p>
+                           
+                              <a href="#" class="btn btn-primary mx-2 my-2 btn-addtowishlist"><i class="fa fa-heart"></i> Add to wishlist</a>
+                              {% comment %} <a href="add-to-cart" class="add-to-cart btn btn-primary mx-2 my-2" data-item-id="{{i.id }}">Add to Cart</a> {% endcomment %}
+                              <button class="add-to-cart btn btn-primary" data-item-id="{{prod.id }}"><i class="fa fa-cart-plus"></i>Add to Cart</button>
+                              {%endfor%}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Button trigger modal -->
+{% comment %} <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+    Launch demo modal
+  </button> {% endcomment %}
+  
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Shipping address</h5>
+          <hr>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class='m-1 p-2'>
+            
+                <form action="" method='POST'>
+                    {% csrf_token %}
+
+                    <div class="mb-1">
+                      <label for="" class="form-label">Name</label>
+                      <input type="text" name="name" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+                    <div class="mb-1">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" name="email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Address</label>
+                        <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Pincode</label>
+                        <input type="number" name="pincode" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">City</label>
+                        <input type="text" name="city" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">State</label>
+                        <input type="text" name="State" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Phone</label>
+                        <input type="number" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Landmark</label>
+                        <input type="text" name="landmark" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <input type="submit" class='btn float-right btn-outline-info col-lg-6'  value='continue billing'>
+                </form> 
+            </div>       
+
+             
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
+

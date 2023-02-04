@@ -1,0 +1,101 @@
+{%extends 'base.html'%}
+
+{%block title%}shooze{% endblock  %}
+
+{%block content%}
+<!-- Main -->
+<main class="py-6 bg-surface-secondary">
+    <div class="container-fluid me-auto">
+        <!-- Card stats -->
+        <table class="table table-responsive text-center">
+            <thead>
+            <tr>
+                <th>sl no:</th>
+                <th>Name</th>
+                <th>price</th>
+                <th>brand</th>
+                <th>Action</th>
+                <!---<th>Brand</th>
+                <th>stoke</th>
+                <th>image</th>
+                <th>action</th>-->
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in cart %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.name}}</td>
+                <td>₹{{i.price}}/-</td>
+                <td>{{i.brand}}</td>
+                <td><div class=" gap-2">
+                  <button type="button" name="" id="" class="btn btn-danger">Remove</button>
+                </div></td>
+
+            </tr>
+            </tbody>
+            {%endfor%}
+        </table>
+
+        <p class="addtocart"><a href="#" class="btn btn-warning btn-buynow" data-bs-toggle="modal" data-bs-target="#exampleModal"><i class="fa fa-money" ></i>  Buy now</a></p>
+
+    </div>
+</main>
+
+  <!-- Modal -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Shipping address</h5>
+          <hr>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+            <div class='m-1 p-2'>
+            
+                <form action="" method='POST'>
+                    {% csrf_token %}
+
+                    <div class="mb-1">
+                      <label for="" class="form-label">Name</label>
+                      <input type="text" name="name" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                    </div>
+                    <div class="mb-1">
+                        <label for="" class="form-label">Email</label>
+                        <input type="text" name="email" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Address</label>
+                        <input type="text" name="address" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Pincode</label>
+                        <input type="number" name="pincode" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">City</label>
+                        <input type="text" name="city" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">State</label>
+                        <input type="text" name="State" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Phone</label>
+                        <input type="number" name="phone" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <div class="mb-1">
+                        <label for="" class="form-label">Landmark</label>
+                        <input type="text" name="landmark" id="" class="form-control" placeholder="" aria-describedby="helpId">
+                      </div>
+                      <input type="submit" class='btn float-right btn-outline-info col-lg-6'  value='continue billing'>
+                </form> 
+            </div>       
+
+             
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock  %}

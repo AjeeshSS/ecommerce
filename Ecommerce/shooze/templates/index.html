@@ -1,0 +1,39 @@
+{%extends 'base.html'%}
+
+{%block title%}shooze{% endblock  %}
+
+{%block content%}
+<div class="container-fluid row mx-auto">
+    <!-----filter-------->
+    <div class=" col-lg-2 my-3">
+        <div class="list-group">
+            <a href="#" class="list-group-item list-group-item-action bg bg-success">Our categories</a>
+            <a href="/" class="list-group-item list-group-item-action">All products</a>
+            {%for i in categorys%}
+            <a href="/?category={{i.id}}" class="list-group-item list-group-item-action">{{i.name}}</a>
+            {% endfor%}
+        </div>
+    </div>
+    <!-----card-------->
+    <div class="col-lg-9">
+        <div class="text-center">
+            {% for i in products %}
+            <div class="card text-center mx-3 my-3" style="width: 15rem;display:inline-block">
+                <div class="card-body">
+                    <a href="{% url 'about_product' %}?prod_id={{i.id}}"><img src="{{i.image.url}}" class="card-img-top"></a>
+                    <h5 class="card-title">{{i.name}}</h5>
+                    <h5 class="card-title">₹{{i.price}}/-</h5>
+                    <p class="card-text">shoes for {{i.category}}</p>
+            
+                        
+                    <button class="add-to-cart btn btn-primary" data-item-id="{{i.id }}"><i class="fa fa-cart-plus"></i>Add to Cart</button>
+
+                    
+                </div>
+            </div>
+            {% endfor%}
+        </div>
+    </div>
+</div>
+{% endblock %}
+

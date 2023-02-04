@@ -1,0 +1,43 @@
+{%extends 'base_admin.html'%}
+
+{%block title%}Admin Users{% endblock  %}
+
+{%block content%}
+<!-- Main -->
+<main class="py-6 bg-surface-secondary">
+    <div class="container-fluid">
+        <!-- Card stats -->
+        <table class="table table-responsive text-center">
+            <thead>
+            <tr>
+                <th>sl no:</th>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for i in customer %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{i.name}}</td>
+                <td>{{i.email}}</td>
+                <td>{{i.phone}}</td>
+                                       
+                <td>
+                     {% if i.active %}
+                    <a href="{% url 'userblock' %}?cust_id={{i.id}}" class="btn btn-danger md-sm"><span style="color:white">Block</span></a>
+                    {% else %}
+                    <a href="{% url 'userblock' %}?cust_id={{i.id}}" class="btn btn-success md-sm"><span style="color:white">Unblock</span></a>
+                    {% endif %}
+                </td>
+            </tr>
+            </tbody>
+            {%endfor%}
+        </table>
+
+
+    </div>
+</main>
+{% endblock  %}
